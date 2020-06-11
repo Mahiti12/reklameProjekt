@@ -27,15 +27,23 @@ function CompareRow(props) {
 
     function stopAd1() {
         var audio = document.getElementById(props.oldUrl);
-        audio.pause();
-        audio.remove();
+        if(audio === null) {
+            console.log("Audio doesnt exist");
+        } else {
+            audio.pause();
+            audio.remove();
+        }
         
     }
 
     function stopAd2() {
         var audio = document.getElementById(props.newUrl);
-        audio.pause();
-        audio.remove();
+        if(audio === null) {
+            console.log("Audio doesnt exist");
+        } else {
+            audio.pause();
+            audio.remove();
+        }
     }
 
     function submitAd() {

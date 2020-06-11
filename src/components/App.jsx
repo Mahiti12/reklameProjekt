@@ -67,15 +67,17 @@ function App() {
                 <div className="table-div">
                     <table>
                         <tbody>
-                            <td></td>
-                            <td>Naziv</td>
-                            <td>Trajanje</td>
-                            <td>Datum</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <tr>
+                                <td></td>
+                                <td>Naziv</td>
+                                <td>Trajanje</td>
+                                <td>Datum</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                             {compareData.map((item, index) => (
                                 <CompareRow 
                                     key={item.pksid}

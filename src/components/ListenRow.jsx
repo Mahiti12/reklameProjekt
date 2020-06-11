@@ -16,8 +16,12 @@ function ListenRow(props) {
 
     function stopAdd() {
         var audio = document.getElementById(props.id);
-        audio.pause();
-        audio.remove();
+        if(audio === null) {
+            console.log("Audio doesnt exist");
+        } else {
+            audio.pause();
+            audio.remove();
+        }
     }
 
     function submitRightAdd() {
