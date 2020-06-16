@@ -4,24 +4,17 @@ import $ from "jquery";
 function ListenRow(props) {
 
     function playAdd() {
-        let audio = new Audio(props.url);
-        document.getElementById("root").append(audio);
-        audio.setAttribute("id", props.id);
-        audio.play();
 
-        audio.addEventListener("ended", function() {
-            audio.remove();
-        })
+        var audio = document.getElementById("audio1");
+
+        audio.setAttribute("src", props.url);
+        audio.play();
     }
 
     function stopAdd() {
-        var audio = document.getElementById(props.id);
-        if(audio === null) {
-            console.log("Audio doesnt exist");
-        } else {
-            audio.pause();
-            audio.remove();
-        }
+        var audio = document.getElementById("audio1");
+
+        audio.pause();
     }
 
     function submitRightAdd() {

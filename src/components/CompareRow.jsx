@@ -4,46 +4,48 @@ import $ from "jquery";
 function CompareRow(props) {
 
     function playAd1() {
-        let audio = new Audio(props.oldUrl);
-        document.getElementById("root").append(audio);
-        audio.setAttribute("id", props.oldUrl);
-        audio.play();
 
-        audio.addEventListener("ended", function() {
-            audio.remove();
-        })
+        var audio = document.getElementById("audio2");
+
+        audio.setAttribute("src", props.oldUrl);
+        audio.play();
     }
 
-    function playAd2() {
-        let audio = new Audio(props.newUrl);
-        document.getElementById("root").append(audio);
-        audio.setAttribute("id", props.newUrl);
-        audio.play();
+    function playAd2(event) {
+        var buttons = document.getElementsByClassName("new-ad-btn");
 
-        audio.addEventListener("ended", function() {
-            audio.remove();
-        })
+        var audio = document.getElementById("audio2");
+        audio.setAttribute("src", props.newUrl);
+
+        for(var i = 0; i< buttons.length; i++) {
+            buttons[i].innerHTML = "Wait...";
+            buttons[i].disabled = true;
+        }
+        
+        audio.play();
+        audio.addEventListener("loadeddata", (event) => {
+            for(var i = 0; i< buttons.length; i++) {
+                buttons[i].innerHTML = "Play new ad";
+                buttons[i].disabled = false;
+            }
+        });
     }
 
     function stopAd1() {
-        var audio = document.getElementById(props.oldUrl);
-        if(audio === null) {
-            console.log("Audio doesnt exist");
-        } else {
-            audio.pause();
-            audio.remove();
-        }
+        var audio = document.getElementById("audio2");
+        audio.pause();
         
     }
 
     function stopAd2() {
-        var audio = document.getElementById(props.newUrl);
-        if(audio === null) {
-            console.log("Audio doesnt exist");
-        } else {
-            audio.pause();
-            audio.remove();
+        var buttons = document.getElementsByClassName("new-ad-btn");
+
+        for(var i = 0; i< buttons.length; i++) {
+            buttons[i].innerHTML = "Play new ad";
+            buttons[i].disabled = false;
         }
+        var audio = document.getElementById("audio2");
+        audio.pause();
     }
 
     function submitAd() {
@@ -60,7 +62,7 @@ function CompareRow(props) {
         <td>{props.date}</td>
         <td><button onClick={playAd1} className="btn table-button btn-primary">Play old ad</button></td>
         <td><button onClick={stopAd1} className="btn table-button btn-primary">Stop old ad</button></td>
-        <td><button onClick={playAd2} className="btn table-button btn-secondary">Play new ad</button></td>
+        <td><button onClick={playAd2} className="btn table-button btn-secondary new-ad-btn">Play new ad</button></td>
         <td><button onClick={stopAd2} className="btn table-button btn-secondary">Stop new ad</button></td>
         <td><button onClick={submitAd} className="btn table-button btn-success">New Ad is OK</button></td>
     </tr>

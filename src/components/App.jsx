@@ -42,6 +42,7 @@ function App() {
 
             <Tab eventKey="listen-ad" title="Listen Ad">
                 <input value={number} onChange={handleChange} placeholder="Broj reklama:"></input>
+                <audio preload="auto" id="audio1"></audio>
                 <div className="table-div">
                     <table>
                         <tbody>     
@@ -64,6 +65,7 @@ function App() {
 
             <Tab eventKey="compare-ad" title="Compare Ad">
                 <input value={number} onChange={handleChange} placeholder="Broj reklama:"></input>
+                <audio preload="auto" id="audio2"></audio>
                 <div className="table-div">
                     <table>
                         <tbody>
