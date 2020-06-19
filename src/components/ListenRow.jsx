@@ -5,6 +5,10 @@ import WaveSurfer from "wavesurfer.js";
 function ListenRow(props) {
 
     var wavesurfer = props.audio;
+    var date = props.date;
+    date = date.replace("-", ".");
+    date = date.replace("-", ".");
+    date = date.replace("T", " ");
 
     function setAd() {
         wavesurfer.load(props.url);
@@ -12,13 +16,7 @@ function ListenRow(props) {
             wavesurfer.play();
         });
 
-        document.getElementById("waveform1").style.display = "block";
         document.getElementById("title").innerHTML = props.title;
-        document.getElementById("title").style.display = "block";
-        var buttons = document.getElementsByClassName("player-btn");
-        for(var i = 0; i <= 1; i++) {
-            buttons[i].style.display = "inline-block";
-        }
     }
 
     function submitRightAdd() {
@@ -38,9 +36,9 @@ function ListenRow(props) {
     return <tr id={props.number}>
         <td>{props.number}</td>
         <td>{props.title}</td>
-        <td>{props.duration}</td>
-        <td>{props.date}</td>
-        <td><button onClick={setAd} className="btn table-button btn-primary">View in player</button></td>
+        <td className="duration">{props.duration.toFixed(2)}</td>
+        <td>{date}</td>
+        <td><button onClick={setAd} className="btn table-button btn-primary">To player</button></td>
         <td><button onClick={submitRightAdd} className="btn table-button btn-success">OK</button></td>
         <td><button onClick={submitWrongAdd} className="btn table-button btn-danger">Not OK</button></td>
     </tr>

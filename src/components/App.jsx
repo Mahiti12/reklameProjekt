@@ -34,11 +34,6 @@ function App() {
     useInterval(() => {
         sendGet();
     }, 1000);
-
-    function handleChange(event) {
-        const value = event.target.value;
-        setNumber(value);
-    }
     
         useEffect(() => {
 
@@ -47,10 +42,9 @@ function App() {
                 cursorWidth: 1,
                 container: "#waveform1",
                 height: 80,
-                waveColor: 'white',
+                waveColor: '#09ceff',
                 progressColor: 'blue',
                 responsive: true,
-                waveColor: "#EFEFEF",
                 cursorColor: "purple"
             });
 
@@ -59,10 +53,9 @@ function App() {
                 cursorWidth: 1,
                 container: "#waveform2",
                 height: 80,
-                waveColor: 'white',
+                waveColor: '#09ceff',
                 progressColor: 'blue',
                 responsive: true,
-                waveColor: "#EFEFEF",
                 cursorColor: "purple"
             });
 
@@ -84,24 +77,24 @@ function App() {
         <Tabs defaultActiveKey="listen-ad" id="uncontrolled-tab-example">
 
             <Tab eventKey="listen-ad" title="Listen Ad">
-
-                <input value={number} onChange={handleChange} placeholder="Broj reklama:"></input>
-                
-                <h2 style={{display:"none"}} id="title">Title</h2>
-                <div style={{display:"none"}} className="wavediv" id="waveform1"></div>
-                <button style={{display:"none"}} onClick={function(){play(audio1)}} className="player-btn btn btn-primary">Play</button>
-                <button style={{display:"none"}} onClick={function(){stop(audio1)}} className="player-btn btn btn-primary">Stop</button>
+                <p>Please check each ad and determine if the quality of it is OK.  Then, click OK or Not OK to remove it from the checking queue.</p>
+                <h2 id="title">Player</h2>
+                <button onClick={function(){play(audio1)}} className="player-btn btn btn-primary">Play</button>
+                <button onClick={function(){stop(audio1)}} className="player-btn btn btn-primary">Stop</button>
+                <div className="wavediv" id="waveform1"></div>
 
                 <div className="table-div">
                     <table>
-                        <tbody>     
-                        <td></td>
+                        <tbody>
+                            <tr>    
+                                <td></td>
                                 <td>Name</td>
-                                <td>Duraiton</td>
+                                <td>Duration</td>
                                 <td>Date</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                            </tr>
                             {listenData.map((item, index) => (
                                 <ListenRow
                                     key={item.pksid}
@@ -120,12 +113,11 @@ function App() {
             </Tab>
 
             <Tab eventKey="compare-ad" title="Compare Ad">
-                <input value={number} onChange={handleChange} placeholder="Broj reklama:"></input>
-
-                <h2 style={{display:"none"}} id="title2">Title</h2>
-                <div style={{display:"none"}} className="wavediv" id="waveform2"></div>
-                <button style={{display:"none"}} onClick={function(){play(audio2)}} className="player-btn player-btn2 btn btn-primary">Play</button>
-                <button style={{display:"none"}} onClick={function(){stop(audio2)}} className="player-btn player-btn2 btn btn-primary">Stop</button>
+                <p>Compare Old bad ad with new version of the same ad and check it for quality. Use OK button to mark new version of ad as good.</p>
+                <h2 id="title2">Player</h2>
+                <button onClick={function(){play(audio2)}} className="player-btn btn btn-primary">Play</button>
+                <button onClick={function(){stop(audio2)}} className="player-btn btn btn-primary">Stop</button>
+                <div className="wavediv" id="waveform2"></div>
 
                 <audio preload="auto" id="audio2"></audio>
                 <div className="table-div">
@@ -134,10 +126,10 @@ function App() {
                             <tr>
                                 <td></td>
                                 <td>Name</td>
-                                <td>Duraiton</td>
+                                <td>Duration</td>
                                 <td>Date</td>
-                                <td></td>
-                                <td></td>
+                                <td>Old Ad</td>
+                                <td>New Ad</td>
                                 <td></td>
                             </tr>
                             {compareData.map((item, index) => (

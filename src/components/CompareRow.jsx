@@ -5,19 +5,13 @@ import WaveSurfer from "wavesurfer.js";
 function CompareRow(props) {
 
     var wavesurfer = props.audio;
-
-    function displayPlayer(input) {
-        document.getElementById("waveform2").style.display = "block";
-        document.getElementById("title2").innerHTML = props.title + input;
-        document.getElementById("title2").style.display = "block";
-        var buttons = document.getElementsByClassName("player-btn2");
-        for(var i = 0; i <= 1; i++) {
-            buttons[i].style.display = "inline-block";
-        }
-    }
+    var date = props.date;
+    date = date.replace("-", ".");
+    date = date.replace("-", ".");
+    date = date.replace("T", " ");
 
     function playAd1() {
-        displayPlayer(" - OLD AD");
+        document.getElementById("title2").innerHTML = props.title + "<span> OLD AD</span>";
 
         wavesurfer.load(props.oldUrl);
         wavesurfer.on('ready', function () {
@@ -26,6 +20,8 @@ function CompareRow(props) {
     }
 
     function playAd2(event) {
+        document.getElementById("title2").innerHTML = props.title + "<span> NEW AD</span>";
+
         var buttons = document.getElementsByClassName("new-ad-btn");
 
         for(var i = 0; i< buttons.length; i++) {
@@ -33,20 +29,14 @@ function CompareRow(props) {
             buttons[i].disabled = true;
         }
 
-        displayPlayer(" - NEW AD");
-
         wavesurfer.load(props.newUrl);
         wavesurfer.on('ready', function () {
             for(var i = 0; i< buttons.length; i++) {
-                buttons[i].innerHTML = "Play new ad";
+                buttons[i].innerHTML = "To player";
                 buttons[i].disabled = false;
             }
             wavesurfer.play();
         });
-        
-        // wavesurfer.addEventListener("loadeddata", (event) => {
-            
-        // });
     }
 
     function submitAd() {
@@ -59,11 +49,11 @@ function CompareRow(props) {
     return <tr id={props.id}>
         <td>{props.number}</td>
         <td>{props.title}</td>
-        <td>{props.duration}</td>
-        <td>{props.date}</td>
-        <td><button onClick={playAd1} className="btn table-button btn-primary">View old ad in player</button></td>
-        <td><button onClick={playAd2} className="btn table-button btn-secondary new-ad-btn">View new ad in player</button></td>
-        <td><button onClick={submitAd} className="btn table-button btn-success">New Ad is OK</button></td>
+        <td className="duration">{props.duration.toFixed(2)}</td>
+        <td>{date}</td>
+        <td><button onClick={playAd1} className="btn table-button btn-primary">To player</button></td>
+        <td><button onClick={playAd2} className="btn table-button btn-secondary new-ad-btn">To player</button></td>
+        <td><button onClick={submitAd} className="btn table-button btn-success">OK</button></td>
     </tr>
 }
 

@@ -1,6 +1,39 @@
+/* ---- CLASS STYLES ---- */
+
+.table-button {
+    margin: 10px;
+}
+
+.btn-menu {
+    margin: 10px 10px 10px 0;
+}
+
+.player-btn {
+    margin: -10px 20px 0px 20px;
+    font-size: 120%;
+    display: inline-block;
+}
+
+.table-div {
+    overflow: scroll;
+    height: 100vh;
+}
+
+.wavediv {
+    margin: 30px 0 65px 0;
+}
+
+.duration {
+    text-align: right;
+}
+
+/* ---- ID'S ---- */
+
 #root {
     margin: 20px;
 }
+
+/* ---- HTML ELEMENTS ---- */
 
 td {
     border: 2px black solid;
@@ -13,24 +46,24 @@ input {
     margin: 20px 0;
 }
 
-.table-button {
-    margin: 10px;
+h2 {
+    display: inline-block;
+    margin: 20px 0 ;
+    width: 80%;
 }
 
-.btn-menu {
-    margin: 10px 10px 10px 0;
+p {
+      margin: 20px 5px;
+      font-size: 130%;
 }
 
-.player-btn {
-    margin: 30px 20px 30px 0;
-    font-size: 120%;
+span {
+    padding: 5px 0 0 40px;
+    color: blue;
 }
 
-.table-div {
-    overflow: scroll;
-    height: 100vh;
-}
-
-.wavediv {
-    margin: 30px 0 20px 0;
+@media screen and (max-width: 1200px) {
+    h2 {
+        width: 60%;
+    }
 }
